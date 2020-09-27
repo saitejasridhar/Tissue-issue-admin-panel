@@ -16,10 +16,9 @@ export class BookListComponent {
   BookData: any = [];
   displayedColumns: any[] = [
     '$key',
-    'book_name',
-    'author_name', 
-    'publication_date',
-    'in_stock',
+    'name',
+    'address', 
+    'time',
     'action'
   ];
   

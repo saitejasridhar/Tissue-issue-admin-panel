@@ -15,13 +15,9 @@ export class BookService {
   /* Create book */
   AddBook(book: Book) {
     this.booksRef.push({
-      book_name: book.book_name,
-      isbn_10: book.isbn_10,
-      author_name: book.author_name,
-      publication_date: book.publication_date,
-      binding_type: book.binding_type,
-      in_stock: book.in_stock,
-      languages: book.languages
+     name: book.name,
+     address: book.address,
+     time: book.time
     })
     .catch(error => {
       this.errorMgmt(error);
@@ -30,26 +26,23 @@ export class BookService {
 
   /* Get book */
   GetBook(id: string) {
-    this.bookRef = this.db.object('books-list/' + id);
+    this.bookRef = this.db.object('Profiles/' + id);
     return this.bookRef;
   }  
 
   /* Get book list */
   GetBookList() {
-    this.booksRef = this.db.list('books-list');
+    this.booksRef = this.db.list('Profiles');
     return this.booksRef;
   }
 
   /* Update book */
   UpdateBook(id, book: Book) {
     this.bookRef.update({
-      book_name: book.book_name,
-      isbn_10: book.isbn_10,
-      author_name: book.author_name,
-      publication_date: book.publication_date,
-      binding_type: book.binding_type,
-      in_stock: book.in_stock,
-      languages: book.languages
+     name: book.name,
+     address: book.address,
+      time: book.time,
+    
     })
     .catch(error => {
       this.errorMgmt(error);
@@ -58,7 +51,7 @@ export class BookService {
 
   /* Delete book */
   DeleteBook(id: string) {
-    this.bookRef = this.db.object('books-list/' + id);
+    this.bookRef = this.db.object('Profiles/' + id);
     this.bookRef.remove()
     .catch(error => {
       this.errorMgmt(error);

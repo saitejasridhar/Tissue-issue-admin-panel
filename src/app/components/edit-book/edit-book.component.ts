@@ -26,7 +26,6 @@ export class EditBookComponent implements OnInit {
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   selectedBindingType: string;
   editBookForm: FormGroup;
-  BindingType: any = ['Paperback', 'Case binding', 'Perfect binding', 'Saddle stitch binding', 'Spiral binding'];
 
   ngOnInit() {
     this.updateBookForm();
@@ -49,37 +48,14 @@ export class EditBookComponent implements OnInit {
   /* Update form */
   updateBookForm(){
     this.editBookForm = this.fb.group({
-      book_name: ['', [Validators.required]],
-      isbn_10: ['', [Validators.required]],
-      author_name: ['', [Validators.required]],
-      publication_date: ['', [Validators.required]],
-      binding_type: ['', [Validators.required]],
-      in_stock: ['Yes'],
-      languages: ['']
+      name: ['', [Validators.required]],
+      address: ['', [Validators.required]],
+      time: ['', [Validators.required]],
+ 
     })
   }
 
-  /* Add language */
-  add(event: MatChipInputEvent): void {
-    var input: any = event.input;
-    var value: any = event.value;
-    // Add language
-    if ((value || '').trim() && this.languageArray.length < 5) {
-      this.languageArray.push({name: value.trim()});
-    }
-    // Reset the input value
-    if (input) {
-      input.value = '';
-    }
-  }
 
-  /* Remove language */
-  remove(language: any): void {
-    const index = this.languageArray.indexOf(language);
-    if (index >= 0) {
-      this.languageArray.splice(index, 1);
-    }
-  }
 
   /* Get errors */
   public handleError = (controlName: string, errorName: string) => {
@@ -89,7 +65,7 @@ export class EditBookComponent implements OnInit {
   /* Date */
   formatDate(e) {
     var convertDate = new Date(e.target.value).toISOString().substring(0, 10);
-    this.editBookForm.get('publication_date').setValue(convertDate, {
+    this.editBookForm.get('time').setValue(convertDate, {
       onlyself: true
     })
   }
